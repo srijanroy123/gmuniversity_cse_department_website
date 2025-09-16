@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQAC & Quality Initiatives - CSE Department</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header .logo {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header-text h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a2a6c;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            border-radius: 2px;
+        }
+        
+        .intro {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #1a2a6c;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #1a2a6c;
+            border-bottom: 2px solid #fdbb2d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #b21f1f;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        li:before {
+            content: "•";
+            color: #b21f1f;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+        
+        .coordinators-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .coordinator-card {
+            flex: 1;
+            min-width: 280px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #1a2a6c;
+        }
+        
+        .coordinator-name {
+            font-weight: bold;
+            color: #1a2a6c;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .coordinator-details {
+            color: #555;
+        }
+        
+        .coordinator-details i {
+            color: #b21f1f;
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .initiative-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #fdbb2d;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .initiative-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .initiative-title i {
+            margin-right: 10px;
+            color: #b21f1f;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #b21f1f;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header .logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .coordinators-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"> 
+            <img src="CSE logo (2).png" alt="CSE Logo" class="logo">
+            <div class="header-text">
+                <h1>Computer Science and Engineering</h1>
+                <h2>GM University, Davangere</h2>
+            </div>
+        </div>
+        
+        <h1 class="page-title">IQAC & Quality Initiatives</h1>
+        
+        <div class="intro">
+            <p>The Department of Computer Science & Engineering (CSE) actively engages in the Internal Quality Assurance Cell (IQAC) framework of GM University to strengthen teaching, learning, and academic governance. The department emphasizes quality enhancement through structured mentoring, data-driven decision-making, and continuous improvement practices.</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-users"></i> IQAC Coordinators</h2>
+            <div class="coordinators-container">
+                <div class="coordinator-card">
+                    <div class="coordinator-name">Dr. Chethan Chandra S. Basavaraddi</div>
+                    <div class="coordinator-details">
+                        <p><i class="fas fa-envelope"></i> Email: chethanchandrasb.cse@gmu.ac.in</p>
+                        <p><i class="fas fa-phone"></i> Mobile: +91 98445 08359</p>
+                    </div>
+                </div>
+                
+                <div class="coordinator-card">
+                    <div class="coordinator-name">Mr. Santoshkumar M</div>
+                    <div class="coordinator-details">
+                        <p><i class="fas fa-envelope"></i> Email: santoshkumarm@gmit.ac.in</p>
+                        <p><i class="fas fa-phone"></i> Mobile: +91 92421 63128</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Key Quality Initiatives</h2>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-title"><i class="fas fa-user-graduate"></i> Mentorship Model</div>
+                    <p>Each faculty member mentors students in a 1:30 ratio, ensuring personalized guidance, academic monitoring, and career support.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-title"><i class="fas fa-chart-line"></i> ERP-Enabled Quality Assurance</div>
+                    <p>The department leverages the University ERP system for data visualization, performance tracking, and evidence-based decision-making. Insights generated from ERP data support decisions at the mentor, coordinator, and HoD levels, enhancing transparency and accountability.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-title"><i class="fas fa-file-alt"></i> OBE and Documentation</div>
+                    <p>The IQAC coordinators maintain syllabus records, course outcome and program outcome mappings, feedback reports, placement statistics, and curriculum review data.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-title"><i class="fas fa-sync-alt"></i> Continuous Improvement</div>
+                    <p>Regular benchmarking against peer institutions, stakeholder consultations, and academic audits ensure alignment with AICTE/UGC regulations and industry requirements.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="intro">
+            <p>Through these initiatives, the CSE Department ensures that its quality practices are systematic, measurable, and forward-looking, creating an environment that supports student success and institutional growth.</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 GM University, Davangere | Department of Computer Science and Engineering</p>
+        </div>
+    </div>
+</body>
+</html>

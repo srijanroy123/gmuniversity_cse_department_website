@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board of Studies - CSE Department</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header .logo {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header-text h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a2a6c;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            border-radius: 2px;
+        }
+        
+        .intro {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #1a2a6c;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #1a2a6c;
+            border-bottom: 2px solid #fdbb2d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #b21f1f;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #b21f1f;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to right, #1a2a6c, #2c3e90);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header .logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"> 
+            <img src="CSE logo (2).png" alt="CSE Logo" class="logo">
+            <div class="header-text">
+                <h1>Computer Science and Engineering</h1>
+                <h2>GM University, Davangere</h2>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <h1>Board of Studies (BoS)</h1>
+        </div>
+
+        <div class="intro">
+            <p>The <span class="highlight">Board of Studies (BoS)</span> of the Department of Computer Science & Engineering is the primary academic body responsible for designing, reviewing, and updating the curriculum. It ensures that the courses offered are aligned with the <span class="highlight">vision of GM University</span>, the requirements of <span class="highlight">AICTE/UGC guidelines</span>, and the evolving needs of the <span class="highlight">IT industry, Professional Body's vision of the industry and research community</span>.</p>
+            
+            <p>The BoS also recommends new programs, proposes panels of examiners, and identifies standard learning resources for teaching and evaluation. Its recommendations are placed before the <span class="highlight">Board of Faculty and Academic Council</span> for approval, as per the <span class="highlight">GMU Statutes (pp. 40-41)</span>.</p>
+            
+            <p>The BoS of CSE includes the <span class="highlight">Head of the Department (Chairperson)</span>, senior faculty members, external subject experts, and industry representatives, bringing together academic depth and professional relevance.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-users"></i> BoS Members of the Department of CSE</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Category / Position</th>
+                            <th>Required Designation / Profile</th>
+                            <th>Preferred From</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Chairperson</td>
+                            <td>Head of the Department (HoD)</td>
+                            <td>Concerned Department</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Member Secretary</td>
+                            <td>Program Coordinator / DUGC Member Secretary / Senior Faculty</td>
+                            <td>Concerned Department</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Internal Members (4-6)</td>
+                            <td>Professors / Associate Professors / Senior Faculty</td>
+                            <td>Concerned Department</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Academic Council Nominee - 1</td>
+                            <td>Senior Faculty (Professor/Assoc. Prof.)</td>
+                            <td>State/Central/Private University</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Academic Council Nominee - 2</td>
+                            <td>Senior Faculty (Professor/Assoc. Prof.)</td>
+                            <td>Autonomous Institution (preferably within State)</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Academic Council Nominee - 3</td>
+                            <td>Subject Expert / Associate Professor / Professor</td>
+                            <td>Reputed University/Institution (outside State/region)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Vice-Chancellor Nominee</td>
+                            <td>Senior Professor</td>
+                            <td>Any Recognized Institution (nominated by VC)</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Industry Representative - Senior</td>
+                            <td>Industry Expert / Senior Alumnus (10+ years experience)</td>
+                            <td>Reputed Industry / Alumni (earlier batches)</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Industry Representative - Young</td>
+                            <td>Recent Alumnus (within last 10-15 years) in Industry/R&D</td>
+                            <td>Industry/Research Organization (recent batches alumni)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Department of Computer Science and Engineering | GM University, Davangere</p>
+            <p>© 2023 All Rights Reserved</p>
+        </div>
+    </div>
+</body>
+</html>

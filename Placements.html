@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placements & Internships</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d82;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-blue: #e9f2ff;
+            --purple: #5b45e9;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header - unchanged as requested */
+         .header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg,  #fdbb2d, #b21f1f,#1a2a6c);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            width: 80px; 
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header-text h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        /* Main content container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        /* Page title */
+        .page-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: var(--primary-dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Section styling */
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            color: var(--purple);
+            margin: 30px 0 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Content styling */
+        .content {
+            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        /* List styling */
+        .styled-list {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .styled-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .styled-list li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            top: -5px;
+        }
+        
+        /* Highlight boxes */
+        .highlight-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--purple);
+        }
+        
+        .highlight-title {
+            display: flex;
+            align-items: center;
+            color: var(--purple);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .skill-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .skill-title {
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        /* Callout section */
+        .callout {
+            background: var(--light-blue);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            position: relative;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .callout:before {
+            content: '"';
+            font-family: Georgia, serif;
+            font-size: 60px;
+            color: var(--primary);
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            opacity: 0.2;
+        }
+        
+        .callout-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin: 0;
+            padding: 0 20px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .page-title {
+                margin: 30px 0 20px;
+                font-size: 1.8rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .highlight-box, .callout {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-text h1 {
+                font-size: 20px;
+            }
+            
+            .header-text h2 {
+                font-size: 16px;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header"> 
+  <img src="CSE logo (2).png" alt="CSE Logo" class="logo">
+  <div class="header-text">
+    <h1>Computer Science and Engineering</h1>
+    <h2>GM University, Davangere</h2>
+  </div>
+</div>
+
+<div class="container">
+    <h1 class="page-title">Placements & Internships</h1>
+    
+    <div class="section">
+        <h2 class="section-title">What Companies Expect From Fresh Graduates – A Perspective from the Department of Computer Science</h2>
+        
+        <p class="content">At the Department of Computer Science, we constantly reflect on what companies truly expect from fresh engineering graduates. Every year, the number and type of companies visiting a campus may vary, as it depends on their business needs and expansion plans. However, <b>the core expectations from students remain consistent</b>.</p>
+        
+        <div class="highlight-box">
+            <h3 class="highlight-title"><i class="fas fa-bullseye"></i> The Foundational Skills Companies Look For</h3>
+            <p class="content">Employers across industries emphasize certain key abilities:</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <div class="skill-title">Problem-Solving Ability</div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-comments"></i></div>
+                    <div class="skill-title">Verbal Communication</div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div class="skill-title">Logical Reasoning</div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="skill-title">Learnability</div>
+                </div>
+            </div>
+            
+            <p class="content">These are often assessed through written tests—such as essay writing for verbal ability, or logical puzzles for reasoning skills.</p>
+            
+            <p class="content">Beyond these, recruiters also seek qualities that define professional maturity:</p>
+            
+            <ul class="styled-list">
+                <li><b>Ability to articulate and convince</b></li>
+                <li><b>Leadership potential</b></li>
+                <li><b>Team orientation</b></li>
+                <li><b>Active listening</b></li>
+            </ul>
+            
+            <p class="content">Group discussions and personal interviews remain the most popular formats to evaluate these.</p>
+        </div>
+        
+        <div class="highlight-box">
+            <h3 class="highlight-title"><i class="fas fa-laptop-code"></i> The Technical Edge</h3>
+            <p class="content">Equally important is technical competency—the depth of understanding in concepts taught throughout the program. This is tested through technical written exams and interviews, covering:</p>
+            
+            <ul class="styled-list">
+                <li><b>Core programming skills</b></li>
+                <li><b>Fundamental engineering concepts</b></li>
+                <li><b>Branch-specific knowledge</b></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h3 class="section-subtitle">Digital Footprints and Professional Visibility</h3>
+        
+        <p class="content">In today's world, companies also pay attention to a student's digital presence and participation in reputed events.</p>
+        
+        <ul class="styled-list">
+            <li>A positive and professional digital footprint on social media demonstrates responsibility and thought leadership.</li>
+            <li>Participation in well-respected branded events—such as the Smart India Hackathon (SIH), ACM Student Symposiums, ICPC, Google Summer of Code, Microsoft Imagine Cup, Adobe Analytics competitions, and leading techfests of IITs, NITs, and other reputed institutions—adds strong value to a student's profile.</li>
+            <li>Engagement in these platforms not only reflects technical ability but also signals initiative, collaboration, and innovation—qualities companies respect.</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h3 class="section-subtitle">Are These Beyond the Classroom?</h3>
+        
+        <p class="content">Some students may worry that companies demand skills never taught in classrooms. This is a misconception. The truth is that these skills are cultivated gradually through academic rigor, classroom participation, and consistent practice.</p>
+        
+        <p class="content">At Computer Science, we believe that if a student has given their best to every subject, engaged beyond examinations, and attempted challenges like GATE-level problems, these abilities naturally develop.</p>
+        
+        <p class="content">Fundamental core subjects such as Programming Fundamentals, Discrete Mathematical Structures, Graph Theory, Automata Theory, and Algorithm Design and Analysis sharpen reasoning, problem-solving, and logical thinking.</p>
+    </div>
+    
+    <div class="callout">
+        <p class="callout-text">Placement training programs are special camps that sharpen existing abilities, not sessions to build them from scratch.</p>
+    </div>
+    
+    <div class="section">
+        <h3 class="section-subtitle">Practice, Not Shortcuts</h3>
+        
+        <p class="content">Of course, speed and efficiency in solving problems may require exposure to methods, shortcuts, and practice material—but the foundation always comes from regular engagement. Placement training programs offered in colleges should be seen in this light: they are special camps that sharpen existing abilities, not sessions to build them from scratch. Much like Team India's World Cup campaign, where the camp does not teach players how to play cricket, but rather orients their existing skills to win under the specific conditions of the host country—placement training too is designed to fine-tune students' competencies to meet industry expectations.</p>
+        
+        <p class="content">Student life can remain enjoyable while taking up extra reading, solving additional problems, and writing beyond the required assignments—provided one develops a taste for it.</p>
+    </div>
+    
+    <div class="section">
+        <h3 class="section-subtitle">Our Belief</h3>
+        
+        <p class="content">As a department, we firmly believe in classical, time-tested methods of learning. We may not promise shortcuts, but we promise sincere mentorship to guide motivated students. With persistence, passion, and consistent practice, success becomes a natural outcome.</p>
+        
+        <div class="highlight-box">
+            <h3 class="highlight-title"><i class="fas fa-info-circle"></i> Additional Information</h3>
+            <ul class="styled-list">
+                <li>Placement Coordinator details.</li>
+                <li>Placement statistics (Year-wise).</li>
+                <li>Top recruiters logos.</li>
+                <li>Alumni working in industry/academia.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

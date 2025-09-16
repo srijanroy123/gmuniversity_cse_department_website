@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMU Faculty</title>
+    <style>
+        :root {
+            --primary-color: #8b2525;
+            --primary-dark: #6a1c1c;
+            --primary-light: #c93e3e;
+            --secondary-color: #f0c060;
+            --secondary-light: #ffe7b3;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(106, 28, 28, 0.8), rgba(106, 28, 28, 0.8)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-dark);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .course-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .overview-item {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .overview-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .overview-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .overview-item h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto 0;
+        }
+        
+        .eligibility-list, .highlights-list {
+            margin-bottom: 2rem;
+        }
+        
+        .eligibility-list li, .highlights-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .eligibility-list li:before, .highlights-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .fee-structure {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .fee-table th, .fee-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .fee-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .fee-table tr:hover {
+            background-color: rgba(201, 62, 62, 0.1);
+        }
+        
+        .accordion {
+            margin-top: 3rem;
+        }
+        
+        .accordion-item {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .accordion-header {
+            padding: 1.5rem;
+            background: var(--gradient);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            transform: translateY(-2px);
+        }
+        
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .active .toggle-icon {
+            transform: rotate(45deg);
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--white);
+        }
+        
+        .accordion-content-inner {
+            padding: 2rem;
+        }
+        
+        .active .accordion-content {
+            max-height: 2000px;
+        }
+        
+        /* Enhanced Faculty Section Styles */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .faculty-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(139, 37, 37, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .faculty-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(139, 37, 37, 0.12);
+        }
+        
+        .faculty-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+        
+        .faculty-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+        
+        .faculty-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            font-size: 0.8rem;
+        }
+        
+        .faculty-qualifications {
+            color: #666;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+        }
+        
+        .faculty-specialization {
+            display: inline-block;
+            background: rgba(139, 37, 37, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .faculty-contact {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+            color: #666;
+        }
+        
+        .contact-icon {
+            margin-right: 0.4rem;
+            color: var(--primary-color);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .course-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            .faculty-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .faculty-card {
+                padding: 1rem;
+            }
+            
+            .faculty-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+        .video-showcase {
+            background: linear-gradient(135deg, rgba(139, 37, 37, 0.05) 0%, rgba(240, 192, 96, 0.05) 100%);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .video-showcase h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            position: relative;
+        }
+
+        .video-showcase h2:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 37, 37, 0.1);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(139, 37, 37, 0.15);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+       .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.video-container video::-webkit-media-controls {
+    display: flex !important;
+}
+
+.video-container video::-webkit-media-controls-panel {
+    background: rgba(0,0,0,0.8);
+}
+
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-overlay {
+            transform: translateY(0);
+        }
+
+        .video-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            padding: 5px 10px;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 0.8rem;
+        }
+
+        .video-duration {
+            background: rgba(139, 37, 37, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+
+@media screen and (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .video-container {
+        height: 180px;
+    }
+    .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .video-container {
+                height: 200px;
+            }
+             .faculty-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+}
+.faculty-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin: 0 auto 1rem;
+    font-weight: bold;
+    overflow: hidden;
+    position: relative;
+}
+
+.faculty-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.faculty-avatar.no-image {
+    background: var(--gradient);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">GMU</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+        
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Faculty
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <div class="faculty-grid">
+                            
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Dr. SHIVANAGOWDA G M.jpg" alt="Dr. Sanjay Pande" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SP';">
+    </div>
+                                <div class="faculty-name">Dr. SHIVANAGOWDA G M</div>
+                                <div class="faculty-role">B.E., M.Tech., Ph.D.</div>
+                                <div class="faculty-specialization">Professor, Program Coordinator and Associate Director ERP.</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/shivanagowda-g-m-0b54605/">Linkdn</a></div>
+                                <div class="faculty-role"><a href="Shivangowda.html"> Description </a></div>
+                            </div>
+                            
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Dr. CHETHAN CHANDRA S BASAVARADDI.jpg" alt="Dr. Chethan Chandra" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='CC';">
+    </div>
+                                <div class="faculty-name">DR. CHETHAN CHANDRA S BASAVARADDI</div>
+                                <div class="faculty-role">B.E., B.Ed., M.Tech., Ph.D., D.Litt., KEA-KSET.,</div>
+                                <div class="faculty-specialization">Associate Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/dr-chethan-chandra-s-basavaraddi-5b523750/">Linkdn</a></div>
+                                <div class="faculty-role"><a href="Chetan sir.html"> Description </a></div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="SANTOSHKUMAR M.jpg" alt="Santoshkumar M" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SM';">
+    </div>
+                                <div class="faculty-name">SANTOSHKUMAR M</div>
+                                <div class="faculty-role">B.E., M.Tech..,( Ph.D.)</div>
+                                <div class="faculty-specialization">Assistant Professor, Deputy Director Student Affairs</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/santosh-mahendrakar-6908a299/">Linkdn</a></div>
+                                <div class="faculty-role"><a href="Santosh sir.html"> Description </a></div>
+                            </div>
+                             <div class="faculty-card">
+                                 <div class="faculty-avatar">
+        <img src="NAYANA K.jpg" alt="Nayana K" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NK';">
+    </div>
+                                <div class="faculty-name">NAYANA K</div>
+                                <div class="faculty-role">B.E., M.Tech..,( Ph.D.)</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/nayana-k-921205371">Linkdn</a></div>
+                            </div>
+                            
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="KAVYASHREE P N.jpg" alt="Kavyashree P N" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='KP';">
+    </div>
+                                <div class="faculty-name">KAVYASHREE P N</div>
+                                <div class="faculty-role">B.E., M.Tech.., ( Ph.D.)</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/kavyashree-p-n-954b791b9">Linkdn</a></div>
+                            </div>
+
+                            <div class="faculty-card">
+                                 <div class="faculty-avatar">
+        <img src="RANJITHA J.jpg" alt="Ranjitha D S" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='RD';">
+    </div>
+                                <div class="faculty-name">RANJITHA D S</div>
+                                <div class="faculty-role">B.E., M.Tech.,</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/ranjitha-ds-9127a716a">Linkdn</a></div>
+                            </div>
+
+                             <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="NANDITHA G.jpg" alt="Nanditha G" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NG';">
+    </div>
+                                <div class="faculty-name">NANDITHA G</div>
+                                <div class="faculty-role">B.E., M.Tech.,</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/nanditha-g-b490321b3">Linkdn</a></div>
+                            </div>
+                        
+                            
+                             <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="RAVINANDAN JANNU.jpg" alt="Ravinandan Jannu" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='RJ';">
+    </div>
+                                <div class="faculty-name">RAVINANDAN JANNU</div>
+                                <div class="faculty-role">BCA., MCA.</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/ravinandan-jannu-assistant-professor-151168384?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B4GMevE2hQi6TfqlB0L7%2B9Q%3D%3D ">Linkdn</a></div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Niveditha.jpeg" alt="Niveditha T Naik" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NN';">
+    </div>
+                                <div class="faculty-name">Miss Niveditha T Naik</div>
+                                <div class="faculty-role">B.E., M.Tech.,</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/niveditha-t-naik-88b993213">Linkdn</a></div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Sanjana AT.jpg" alt="Sanjana A T" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SA';">
+    </div>
+                                <div class="faculty-name">Miss Sanjana A T</div>
+                                <div class="faculty-role">B.E., M.Tech.,</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Srujan Roy.jpeg" alt="Srijan Roy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SR';">
+    </div>
+                                <div class="faculty-name">Mr. Srijan Roy</div>
+                                <div class="faculty-role">B.E., M.Tech.,</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/srijan-roy-9a355721a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ">Linkdn</a></div>
+                            </div>
+
+                                <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Nayana GS.jpg" alt="Nayana G S" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NG';">
+    </div>
+                                <div class="faculty-name">Nayana G S</div>
+                                <div class="faculty-role">MSc</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/nayana-g-s-153820372">Linkdn</a></div>
+                            </div>
+
+    <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Rakshitha H.jpg" alt="Nayana G S" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NG';">
+    </div>
+                                <div class="faculty-name">Rakshitha H</div>
+                                <div class="faculty-role">MSc</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/nayana-g-s-153820372">Linkdn</a></div>
+                            </div>
+                            
+    <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Latha KB.jpg" alt="Nayana G S" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='NG';">
+    </div>
+                                <div class="faculty-name">Latha K B</div>
+                                <div class="faculty-role">MCA</div>
+                                <div class="faculty-specialization">Assistant Professor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/latha-k-b-940198232">Linkdn</a></div>
+                            </div> 
+
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="DEEPIKA M D.jpg" alt="Deepika M D" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='DM';">
+    </div>
+                                <div class="faculty-name">Miss Deepika M D</div>
+                                <div class="faculty-role">BCA., MCA.</div>
+                                <div class="faculty-specialization">Tutor</div>
+                            </div>
+                             <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="SHALINI M R.jpg" alt="Shalini M R" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SM';">
+    </div>
+                                <div class="faculty-name">SHALINI M R</div>
+                                <div class="faculty-role">B.E., (M.Tech.)</div>
+                                <div class="faculty-specialization">Lecturer</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/shalini-mr-947016250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Linkdn</a></div>
+                            </div>
+                             <div class="faculty-card">
+                               <div class="faculty-avatar">
+        <img src="SUMANA C.jpg" alt="Sumana C" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SC';">
+    </div>
+                                <div class="faculty-name">SUMANA C</div>
+                                <div class="faculty-role">B.E., (M.Tech.)</div>
+                                <div class="faculty-specialization">Lecturer</div>
+                            </div>
+                             <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="SAIMA ANJUM.jpg" alt="Saima Anjum" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SA';">
+    </div>
+                                <div class="faculty-name">SAIMA ANJUM</div>
+                                <div class="faculty-role">B.E., (M.Tech.)</div>
+                                <div class="faculty-specialization">Lecturer</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/saima-anjum-b6a021225?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Linkdn</a></div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="RANJITHA D S.jpg" alt="Ranjitha J" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='RJ';">
+    </div>
+                                <div class="faculty-name">RANJITHA J</div>
+                                <div class="faculty-role">B.E</div>
+                                <div class="faculty-specialization">Lecturer</div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Sindhu.jpeg" alt="Sindhu R R" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SR';">
+    </div>
+                                <div class="faculty-name">Mrs. Sindhu R R</div>
+                                <div class="faculty-role">B.E</div>
+                                <div class="faculty-specialization">Tutor</div>
+                                <div class="faculty-role"><a href="https://www.linkedin.com/in/sindhu-r-r-254b2535b">Linkdn</a></div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="#" alt="Supriya M Kerakkanavar" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SK';">
+    </div>
+                                <div class="faculty-name">Mrs. Supriya M Kerakkanavar</div>
+                                <div class="faculty-role">B.E,(M.tech)</div>
+                                <div class="faculty-specialization">Tutor</div>
+                            </div>
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="Sahana BR.jpg" alt="Sahana B R" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='SB';">
+    </div>
+                                <div class="faculty-name">Miss Sahana B R</div>
+                                <div class="faculty-role">B.E</div>
+                                <div class="faculty-specialization">Tutor</div>
+                            </div>
+
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">
+        <img src="#" alt="Pallavi S" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML='PS';">
+    </div>
+                                <div class="faculty-name">Miss Pallavi S</div>
+                                <div class="faculty-role">B.E</div>
+                                <div class="faculty-specialization">Tutor</div>
+                            </div>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Alumini
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <div class="faculty-grid">
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">MP</div>
+                                <div class="faculty-name">MANIKANTA P BHUTE</div>
+                                <!--<div class="faculty-specialization"><a href="https://www.linkedin.com/in/n-s-manikanta-r-1aaab224a/">Linkdn</a></div>-->
+                            </div>
+                            
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">SM</div>
+                                <div class="faculty-name">SHWETHA MUTTAPPA MUCHUDI</div>
+                                <!--<div class="faculty-specialization"><a href="https://www.linkedin.com/in/vijayalakshmi-k-v-974119281/">Linkdn</a></div>-->
+                            </div>
+                            
+                            <div class="faculty-card">
+                                <div class="faculty-avatar">SM</div>
+                                <div class="faculty-name">SHRIJAN M HIREMATH</div>
+                                <!--<div class="faculty-specialization"><a href="http://www.linkedin.com/in/shreya-b-b2aa82284">Linkdn</a></div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const isActive = accordionItem.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        accordionItem.classList.add('active');
+                    }
+                });
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            if (mobileMenuBtn && nav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

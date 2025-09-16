@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSE Department - Infrastructure & Learning Resources</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #007BFF;
+      --primary-dark: #0056b3;
+      --secondary: #6c757d;
+      --accent: #ffc107;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --success: #28a745;
+      --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header - unchanged as requested */
+ .header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg,  #fdbb2d, #b21f1f,#1a2a6c);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    .header img {
+      width: 80px;
+      margin-right: 15px;
+    }
+    .header-text h1 {
+      margin: 0;
+      font-size: 24px;
+      color: whitesmoke;
+    }
+    .header-text h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: normal;
+      color:whitesmoke;
+    }
+
+    /* Navigation */
+    .nav-container {
+      background: var(--primary);
+      padding: 0 10%;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 25px;
+      display: inline-block;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    
+    nav a:hover, nav a.active {
+      background: var(--primary-dark);
+    }
+    
+    /* Sections */
+    section {
+      padding: 50px 10%;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .section-icon {
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 20px;
+    }
+    
+    section h2 {
+      font-size: 28px;
+      color: var(--primary-dark);
+      margin: 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+    }
+    
+    section p {
+      font-size: 16px;
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      margin: 25px 0;
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card h3 {
+      color: var(--primary-dark);
+      margin-top: 0;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .card h3 i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    table th, table td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 15px;
+    }
+    
+    table th {
+      background: var(--primary);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    table tr:nth-child(even) {
+      background: #f2f6fc;
+    }
+    
+    table tr:hover {
+      background: #e9f0f9;
+    }
+
+    /* Lists */
+    ul {
+      padding-left: 20px;
+      margin: 15px 0;
+    }
+    
+    ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    ul li:before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    .sub-heading {
+      font-weight: bold;
+      color: var(--primary-dark);
+      margin-top: 20px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .sub-heading i {
+      margin-right: 8px;
+    }
+
+    /* Stats */
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .stat-box {
+      flex: 1;
+      min-width: 200px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+    
+    .stat-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 10px 0;
+    }
+    
+    .stat-label {
+      color: var(--secondary);
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 30px 10%;
+      text-align: center;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .footer-section h3 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .copyright {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      section {
+        padding: 40px 5%;
+      }
+      
+      .nav-container {
+        padding: 0 5%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .section-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      
+      .stats-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header - unchanged as requested -->
+  <div class="header"> 
+    <img src="CSE logo (2).png" alt="CSE Logo">
+    <div class="header-text">
+      <h1>Computer Science and Engineering</h1>
+      <h2>GM University, Davangere</h2>
+    </div>
+  </div>
+
+  <!-- Infrastructure -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon">
+        <i class="fas fa-desktop"></i>
+      </div>
+      <h2>Infrastructure & Learning Resources</h2>
+    </div>
+    
+    <p>- Labs: Programming Lab, AI/ML Lab, IoT & Cybersecurity Lab.</p>
+    <p>- Internet: High-speed Wi-Fi and wired connections across campus.</p>
+
+    <div class="stats-container">
+      <div class="stat-box">
+        <i class="fas fa-laptop-code fa-2x"></i>
+        <div class="stat-number">180+</div>
+        <div class="stat-label">Computing Systems</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-wifi fa-2x"></i>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Wi-Fi Coverage</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-flask fa-2x"></i>
+        <div class="stat-number">4</div>
+        <div class="stat-label">Specialized Labs</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-calendar-alt fa-2x"></i>
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Lab Access</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Lab Summary -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon">
+        <i class="fas fa-flask"></i>
+      </div>
+      <h2>Laboratory Summary</h2>
+    </div>
+    
+    <p> The Department of Computer Science & Engineering at GM University maintains well-equipped laboratories that form the foundation for academic instruction, research, and innovation. With over 180 computing systems, the department balances modern high-performance machines and legacy systems to cater to a wide spectrum of courses, from programming fundamentals to advanced domains like Artificial Intelligence, Data Science, Cloud Computing, and Cybersecurity. Recent additions include I-Active All-in-One systems with 12th Gen Intel Core i5 processors, 16GB RAM, and NVMe SSD storage, providing students with industry-ready tools for hands-on learning.</p>
+    
+    <p> The department actively encourages a student-driven model of innovation, inviting learners to submit proposals for the purchase of additional equipment, accessories, and specialized hardware needed for their projects. These purchases not only support immediate academic requirements but also add lasting value to the labs, benefiting future cohorts. Faculty members and students collaborate closely on these initiatives, ensuring that laboratory upgrades reflect both academic goals and real-world applications. </p>
+    
+    <p> In addition to routine upgrades aligned with AICTE norms and ACM curriculum guidelines, the department regularly forwards proposals for infrastructural enhancement, benchmarking itself against leading institutions. To further support innovation and self-paced learning, labs are kept open beyond scheduled hours, enabling students to engage in hackathons, coding practice, project development, and research activities without restrictions. </p>
+    
+    <p> Together, these practices transform CSE laboratories into innovation hubs—spaces where students acquire practical skills, faculty mentor research, and future-ready engineers emerge. </p>
+    
+    <div class="card">
+      <h3><i class="fas fa-microscope"></i> Laboratory Overview</h3>
+      <table>
+        <tr>
+          <th>Lab Name</th>
+          <th>Systems (Qty.)</th>
+          <th>Latest Configuration</th>
+          <th>Year</th>
+          <th>Primary Use</th>
+        </tr>
+        <tr>
+          <td>MCES Lab</td>
+          <td>27+ (mix)</td>
+          <td>I-Active AIO, Core i5, 16GB, 512GB NVMe</td>
+          <td>2025</td>
+          <td>Programming, OS, DBMS</td>
+        </tr>
+        <tr>
+          <td>Algorithms Lab</td>
+          <td>33 (mixed)</td>
+          <td>Acer Veriton Core i5 @ 3GHz, 8GB, 500GB HDD</td>
+          <td>2022</td>
+          <td>Algorithms, Data Structures</td>
+        </tr>
+        <tr>
+          <td>CSE – C322</td>
+          <td>45</td>
+          <td>I-Active AIO, Core i5, 16GB, 512GB NVMe</td>
+          <td>2025</td>
+          <td>AI/ML, Cybersecurity</td>
+        </tr>
+        <tr>
+          <td>Windows Lab</td>
+          <td>41 (mixed)</td>
+          <td>Intel Core i5, 12th Gen, 16GB, 500GB SSD</td>
+          <td>2025</td>
+          <td>Software Development</td>
+        </tr>
+        <tr>
+          <td>General / Old Systems</td>
+          <td>42</td>
+          <td>AMD Assembled, Intel i3/i5</td>
+          <td>2012–2019</td>
+          <td>Backup Use</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Software -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <h2>Software & Tools</h2>
+    </div>
+    
+    <p> The Department of Computer Science & Engineering integrates a wide range of software platforms, IDEs, and frameworks to provide students with practical exposure to both commercial and open-source technologies.</p>
+    
+    <div class="card">
+      <h3><i class="fas fa-tools"></i> Development Tools & Platforms</h3>
+      
+      <div class="sub-heading"><i class="fas fa-laptop-code"></i> Programming & Development</div>
+      <ul> 
+        <li><b>VS Code IDE</b>, Eclipse, NetBeans, IntelliJ IDEA (Community)</li>
+        <li><b>IDLE for Python</b>, PyCharm (Community Edition), Jupyter Notebook, Anaconda</li>
+        <li><b>C/C++ Compilers</b> (GCC, Clang, Turbo C++)</li>
+        <li><b>Java SDK</b> and OpenJDK</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-brain"></i> Data Science, AI & Machine Learning</div>
+      <ul> 
+        <li>MySQL, PostgreSQL, MongoDB</li>
+        <li>Deep Learning Frameworks: TensorFlow, PyTorch, Keras</li>
+        <li>R & RStudio for statistical computing</li>
+        <li>MATLAB (licensed) for simulation and numerical analysis</li>
+        <li>Weka, Orange, RapidMiner (open-source ML tools)</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-database"></i> Databases & Backend</div>
+      <ul> 
+        <li>MySQL, PostgreSQL, MongoDB</li>
+        <li>SQLite (lightweight DBMS)</li>
+        <li>XAMPP / WAMP stacks for web/database integration</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-globe"></i> Web & Application Development</div>
+       <ul> 
+        <li>HTML, CSS, JavaScript toolkits</li>
+        <li>ReactJS, Angular, Node.js</li>
+        <li>PHP, Django, Flask frameworks</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-gamepad"></i> Graphics, Gaming & Simulation</div>
+      <ul> 
+        <li>Unity 3D, Unreal Engine (game development)</li>
+        <li>Blender (3D modeling, open source)</li>
+        <li>OpenGL / WebGL graphics libraries</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-desktop"></i> Operating Systems & Virtualization</div>
+     <ul> 
+        <li>Linux Distros (Ubuntu, Fedora, CentOS)</li>
+        <li>Windows 10/11 (licensed)</li>
+        <li>VMware, VirtualBox, Docker (containerization & virtualization)</li>
+      </ul>
+
+      <div class="sub-heading"><i class="fas fa-graduation-cap"></i> Coding Practice & Learning Platforms</div>
+      <ul> 
+        <li>LeetCode, HackerRank, Codeforces, Kattis</li>
+        <li>Git & GitHub / GitLab for version control</li>
+        <li>Moodle, Google Classroom for e-learning</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Library -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon">
+        <i class="fas fa-book"></i>
+      </div>
+      <h2>Library Resources</h2>
+    </div>
+    
+    <p>Library Resources are also available to support academic and research activities of students and faculty.</p>
+    
+    <div class="stats-container">
+      <div class="stat-box">
+        <i class="fas fa-book-open fa-2x"></i>
+        <div class="stat-number">5000+</div>
+        <div class="stat-label">Technical Books</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-newspaper fa-2x"></i>
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Journals</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-desktop fa-2x"></i>
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Digital Access</div>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-database fa-2x"></i>
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Online Databases</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
