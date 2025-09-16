@@ -1,0 +1,694 @@
+<!DOCTYPE html>    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>GMU CSE Department website</title>
+  <style>
+    :root {
+      --primary-blue: #003366;
+      --secondary-gold: #FFD700;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+    }
+
+    /* General page styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    /* Header styling */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 10px 5%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header img {
+      height: 80px;
+      margin-right: 20px;
+    }
+    
+    .header-text h1 {
+      margin: 0;
+      color: var(--primary-blue);
+      font-size: 1.8rem;
+    }
+    
+    .header-text h2 {
+      margin: 5px 0 0;
+      color: #666;
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      margin: 20px 5%;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero-slide:nth-child(1) {
+      background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('pic1.png') center/cover;
+    }
+    
+    .hero-slide:nth-child(2) {
+      background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('pic2.png') center/cover;
+    }
+    
+    .hero-slide:nth-child(3) {
+      background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('pic3.png') center/cover;
+    }
+    
+    .hero-slide:nth-child(4) {
+      background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('pic4.png') center/cover;
+    }
+    
+    .hero-slide.active {
+      opacity: 1;
+    }
+    
+    .hero-slide h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 0 20px;
+      z-index: 2;
+    }
+    
+    .hero-quote {
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-cta {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--secondary-gold);
+      color: var(--primary-blue);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-nav {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .hero-nav-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .hero-nav-btn.active {
+      background: var(--secondary-gold);
+      transform: scale(1.2);
+    }
+
+    /* Content Sections */
+    .section {
+      padding: 60px 5%;
+    }
+    
+    .section-title {
+      text-align: center;
+      color: var(--primary-blue);
+      margin-bottom: 40px;
+      position: relative;
+      font-size: 2.2rem;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-gold);
+      border-radius: 2px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-title {
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .card-title i {
+      margin-right: 10px;
+      color: var(--secondary-gold);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    
+    /* Vision Mission Section */
+    .vm-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    
+    .vm-card {
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      border-left: 4px solid var(--secondary-gold);
+    }
+    
+    /* Objectives Section */
+    .objectives-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .objective-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .objective-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    .objective-item i {
+      color: var(--secondary-gold);
+      font-size: 1.5rem;
+      margin-right: 15px;
+      margin-top: 3px;
+    }
+    
+    /* HOD Message */
+    .hod-message {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, #004080 100%);
+      color: white;
+      border-radius: 12px;
+      margin-top: 40px;
+    }
+    
+    .hod-message a {
+      display: inline-block;
+      padding: 15px 40px;
+      background: var(--secondary-gold);
+      color: var(--primary-blue);
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hod-message a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      background: #FFEE58;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--primary-blue);
+      color: white;
+      padding: 40px 5%;
+      text-align: center;
+      margin-top: 60px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    
+    .footer-section h3 {
+      color: var(--secondary-gold);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    
+    .footer-section p, .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-section a:hover {
+      color: var(--secondary-gold);
+      padding-left: 5px;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .social-icons a:hover {
+      background: var(--secondary-gold);
+      color: var(--primary-blue);
+    }
+    
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: gold;
+      overflow: visible;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 20px;
+    }
+
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+
+    .navbar a {
+      display: block;
+      color: black; 
+      text-decoration: none;
+      padding: 14px 20px;
+      font-size: 16px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      background-color: greenyellow;
+      border-radius: 5px;
+    }
+
+    /* Dropdown styling */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: gold;
+      min-width: 160px;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .dropdown-content a {
+      padding: 12px 16px;
+      display: block;
+      font-weight: normal;
+    }
+
+    .dropdown-content a:hover {
+      background-color: greenyellow;
+    }
+
+    /* Show dropdown on hover */
+    .navbar li:hover .dropdown-content {
+      display: flex;
+    }
+    
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-submenu {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: gold;
+      min-width: 160px;
+      z-index: 1000;
+    }
+
+    .dropdown-submenu a {
+      padding: 12px 16px;
+      display: block;
+      font-weight: normal;
+    }
+
+    .dropdown-submenu a:hover {
+      background-color: greenyellow;
+    }
+
+    /* Show submenu on hover */
+    .dropdown:hover .dropdown-submenu {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with logo + text -->
+  <div class="header">
+    <img src="CSE logo (2).png" alt="CSE Logo">
+    <div class="header-text">
+      <h1>Computer Science and Engineering</h1>
+      <h2>GM University, Davangere</h2>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li> 
+
+      <li>
+        <a href="#">Academics ▾</a>
+        <div class="dropdown-content">
+          <div class="dropdown">
+            <a href="program.html">Program ▸</a>
+            <div class="dropdown-submenu">
+              <div class="dropdown">
+                <a href="#">UG ▸</a>
+                <div class="dropdown-submenu">
+                  <a href="https://www.gmu.ac.in/pdfview_assets%5Cdownloadmaterial%5CUG%20Programs%5CGMU%20-%20Program%20Document-CSE.pdf">BTech-CSE</a>
+                  <a href="https://gmu.ac.in/pdfview_assets%5Cdownloadmaterial%5CGMU%20School%20of%20Advanced%20%20Studies%20%20Pdf%20Final%5CDeep%20Learning.pdf">PD-DL</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <a href="#">PG ▸</a>
+                <div class="dropdown-submenu">
+                  <a href="https://gmu.ac.in/pdfview_assets%5Cdownloadmaterial%5CGMU%20School%20of%20Advanced%20%20Studies%20%20Pdf%20Final%5CDeep%20Learning.pdf">MTech-CSE</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#">Admission</a>
+          <a href="Placements.html">Placement</a>
+          <a href="IQAC.html">IQAC</a>
+          <a href="Bos.html">BoS</a>
+          <a href="Benchmarking.html">Benchmarking</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">People▾</a>
+        <div class="dropdown-content">
+          <a href="Faculty.html">Faculty</a>
+          <a href="#">Students</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Research ▾</a>
+        <div class="dropdown-content">
+          <a href="Research & Publications.html">Publications</a>
+          <a href="#">Projects</a>
+          <a href="Laboratory.html">Laboratory</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">News ▾</a>
+        <div class="dropdown-content">
+          <a href="#">Announcements</a>
+          <a href="#">Events</a>
+          <a href="Achievements.html">Achievements</a>
+        </div>
+      </li>
+
+      <li><a href="#">Join Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+
+<!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-slide active">
+      <div class="hero-content">
+        <div class="hero-quote">
+          Anybody can learn and excel in anything — but not within the same time, at the same pace, or in the same style. <br>
+    Welcome to the world of self-paced, personalized education — powered by a team that is constantly exploring, innovating, and committed to making this 100% possible. <br><br>
+    <strong>KnoW US KnoW THE WORLD</strong>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-slide">
+      <h1>State-of-the-Art Laboratory</h1>
+    </div>
+    
+    <div class="hero-slide">
+      <h1>Expert Faculties</h1>
+    </div>
+    
+    <div class="hero-slide">
+      <h1>Student Achievements</h1>
+    </div>
+    
+    <div class="hero-nav">
+      <div class="hero-nav-btn active"></div>
+      <div class="hero-nav-btn"></div>
+      <div class="hero-nav-btn"></div>
+      <div class="hero-nav-btn"></div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="section">
+    <h2 class="section-title">About the Department</h2>
+    
+    <div class="about-content">
+      <div class="card">
+        <h3 class="card-title"><i class="fas fa-laptop-code"></i> Cutting-Edge Education</h3>
+        <p>The Department of Computer Science and Engineering (CSE) is a powerhouse of technological advancement, academic excellence, and innovation. With a mission to cultivate future-ready professionals, the department offers a rigorous and industry-aligned curriculum that combines strong theoretical foundations with hands-on experience in cutting-edge technologies such as Artificial Intelligence, Machine Learning, Data Science, Cybersecurity, Blockchain, Cloud Computing, and Internet of Things (IoT).</p>
+      </div>
+      
+      <div class="card">
+        <h3 class="card-title"><i class="fas fa-graduation-cap"></i> Excellence in Research</h3>
+        <p>Over the years, the CSE department has made remarkable strides, producing research that has been published in internationally reputed journals and presented at leading conferences such as IEEE, ACM, and Springer. Faculty members are actively involved in interdisciplinary research and have secured competitive grants from top research agencies and industry collaborators.</p>
+        <p>Students of the department have consistently excelled in both academic and co-curricular arenas—winning prestigious hackathons, coding competitions, and innovation challenges at national and international levels.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Section -->
+  <section class="section">
+    <h2 class="section-title">Our Vision & Mission</h2>
+    
+    <div class="vm-container">
+      <div class="card vm-card">
+        <h3 class="card-title"><i class="fas fa-eye"></i> Vision</h3>
+        <p>Our aspiration is to become a leading center of excellence in the field of Computer Science and Engineering, distinguished by our commitment to education, research, and innovation. We aim to develop professionals who are not only technically proficient but also ethically grounded and socially responsible, equipped to make meaningful contributions toward sustainable global development.</p>
+        <p>In an era marked by rapid technological advancements, it is essential for our graduates to possess the versatility to adapt and excel across emerging and interdisciplinary fields.</p>
+      </div>
+      
+      <div class="card vm-card">
+        <h3 class="card-title"><i class="fas fa-bullseye"></i> Mission</h3>
+        <ul>
+          <li>Provide quality education in Computer Science & Engineering through innovative pedagogy, modern curriculum, and state-of-the-art infrastructure.</li>
+          <li>Build a strong computing foundation that enables students to adapt, specialize, and excel in associated domains.</li>
+          <li>Foster creativity, problem-solving, and leadership qualities through industry collaboration, research, and experiential learning.</li>
+          <li>Cultivate lifelong learning, ethical values, and social responsibility.</li>  
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Objectives Section -->
+  <section class="section">
+    <h2 class="section-title">Our Objectives</h2>
+    
+    <div class="objectives-list">
+      <div class="objective-item">
+        <i class="fas fa-graduation-cap"></i>
+        <div>Deliver high-quality, industry-relevant education in Computer Science & Engineering with a balance of theoretical foundations and practical applications.</div>
+      </div>
+      
+      <div class="objective-item">
+        <i class="fas fa-flask"></i>
+        <div>Encourage faculty and students to pursue impactful research, publish in reputed journals, and contribute to innovation through projects, patents, and start-ups.</div>
+      </div>
+      
+      <div class="objective-item">
+        <i class="fas fa-handshake"></i>
+        <div>Build strong linkages with IT industries and research organizations to enhance curriculum relevance, internships, placements, and collaborative projects.</div>
+      </div>
+      
+      <div class="objective-item">
+        <i class="fas fa-chart-line"></i>
+        <div>Develop technical competence, problem-solving, leadership, teamwork, communication, and ethical values among students to prepare them as responsible global professionals.</div>
+      </div>
+      
+      <div class="objective-item">
+        <i class="fas fa-lightbulb"></i>
+        <div>Cultivate adaptability and continuous learning skills, empowering graduates to succeed in higher studies, competitive exams, entrepreneurial ventures, and global careers.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOD Message -->
+  <section class="section">
+    <div class="hod-message">
+      <h2>A Message from the Head of Department</h2>
+      <p>Learn more about our department's vision and achievements directly from our HoD</p>
+      <a href="hodmessage.html">Read HoD's Message</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> GM University, Davangere, Karnataka</p>
+        <p><i class="fas fa-phone"></i> +91 XXX XXX XXXX</p>
+        <p><i class="fas fa-envelope"></i> cse@gmu.ac.in</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="#">Academics</a>
+        <a href="#">Admissions</a>
+        <a href="#">Research</a>
+        <a href="#">Placements</a>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2023 GM University, Department of Computer Science and Engineering. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Simple slider functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.hero-nav-btn');
+      let currentSlide = 0;
+      
+      function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        currentSlide = (n + slides.length) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+      
+      // Add click events to dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+      });
+      
+      // Auto slide change every 5 seconds
+      setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
